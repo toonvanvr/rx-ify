@@ -3,8 +3,10 @@
     "rootDir": "src",
     "outDir": "dist",
     "target": "ESNext",
-    "lib": ["ESNext"],
-    "moduleResolution": "Classic",
+    "lib": ["ESNext", "DOM"],
+    "moduleResolution": "Node16",
+    "module": "NodeNext",
+    "strict": true,
     "exactOptionalPropertyTypes": true,
   }
 }
