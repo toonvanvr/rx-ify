@@ -1,14 +1,21 @@
-import { BehaviorSubject } from '../../node_modules/rxjs/dist/types/index'
-import { RxTools } from '../lib/const'
-import { Property } from '../lib/types'
+import { BehaviorSubject, Observable, of, share, switchMap } from 'rxjs'
+import { RxTools } from '../lib/const.js'
+import { Property } from '../lib/types.js'
 
-type Mods<T = any> = Map<Property<T>, BehaviorSubject<unknown>>
+type Mod = {
+  source$: BehaviorSubject<Observable<any>>
+  value$: Observable<any>
+}
+type Mods<T = any> = Map<Property<T>, Mod>
 
-function provision<T extends { [RxTools]?: Mods }>(
+type WithRxProperties<T> = {
+  [K in keyof T]: T[K] extends (...args: any[]) => any ? T[K] : Observable<T[K]>
+}
+
+function provision<T extends { [RxTools]?: Mods }, K extends Property<T>>(
   target: T,
-  key: Property<T>,
-  value: unknown
-): BehaviorSubject<unknown> {
+  key: K
+): Mod {
   let mods: Mods<T>
   if (!(RxTools in target)) {
     mods = new Map()
@@ -21,26 +28,32 @@ function provision<T extends { [RxTools]?: Mods }>(
     mods = target[RxTools] as Mods<T>
   }
 
-  let value$: BehaviorSubject<unknown>
+  let mod: Mod
   if (mods.has(key)) {
-    value$ = mods.get(key)!
+    mod = mods.get(key)!
   } else {
-    value$ = new BehaviorSubject(value)
+    const source$ = new BehaviorSubject(of(target[key]))
+    const value$ = source$.pipe(
+      switchMap((v) => v),
+      share()
+    )
+    mod = { source$, value$ }
     const { enumerable, set: oldSetter } =
       Object.getOwnPropertyDescriptor(target, key) ?? {}
     Object.defineProperty(target, key, {
       enumerable: enumerable ?? true,
-      writable: true,
-      set(v: unknown) {
+      set(v: T[K]) {
         oldSetter?.call(target, v)
-        value$.next(v)
+        source$.next(of(v))
       },
-      value,
+      get() {
+        return value$
+      },
     })
-    mods.set(key, value$)
+    mods.set(key, { source$, value$ })
   }
 
-  return value$
+  return mod
 }
 
 /**
@@ -48,13 +61,23 @@ function provision<T extends { [RxTools]?: Mods }>(
  *
  * @param target
  */
-export function rx<T extends object>(target: T) {
-  return new Proxy<T>(target, {
-    get(target: T, key: Property<T>, receiver: any) {
-      return provision(target, key, target[key]).asObservable()
+export function rx<T extends object>(target: T): WithRxProperties<T> {
+  return new Proxy<WithRxProperties<T>>(target as any, {
+    get(target: any, key: Property<T>, receiver: any) {
+      return provision(target as T, key).value$
     },
-    set(value: unknown, key: Property<T>, receiver: any): boolean {
-      provision(target, key, value)
+    set(
+      target: any,
+      key: Property<T>,
+      value: T[Property<T>] | Observable<T[Property<T>]>,
+      receiver: any
+    ): boolean {
+      const mod = provision(target as T, key)
+      if (value instanceof Observable) {
+        mod.source$.next(value)
+      } else {
+        mod.source$.next(of(value))
+      }
       return true
     },
   })
