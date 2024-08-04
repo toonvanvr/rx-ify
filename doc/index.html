@@ -36,22 +36,28 @@
 
 <body>
 
-  <!-- Title with version badge -->
-  <h1>
-    Rxify
-    <sl-badge
-      style="font-size: var(--sl-font-size-2x-small)"
-      variant="warning"
-      pill
-      pulse>1.0.0-alpha.5</sl-badge>
-  </h1>
+  <header>
+    <!-- Title with version badge -->
+    <h1 class="grow-rest">
+      Rxify
+      <sl-badge
+        style="font-size: var(--sl-font-size-2x-small)"
+        variant="warning"
+        pill
+        pulse>1.0.0-alpha.5</sl-badge>
+    </h1>
 
-  <!-- Active development warning -->
-  <sl-alert variant="warning" open>
-    <sl-icon slot="icon" name="exclamation-triangle"></sl-icon>
-    The API is in active development and under constant changes.<br />
-    <strong>Breaking changes are expected before release.</strong>
-  </sl-alert>
+    <!-- Active development warning -->
+    <div class="grow" style="flex-basis: 756px;">
+      <sl-alert
+        data-local-storage-key="alert-alpha-version"
+        variant="warning" open closable>
+        <sl-icon slot="icon" name="exclamation-triangle"></sl-icon>
+        The API is in active development and under constant changes.<br />
+        <strong>Breaking changes are expected before release.</strong>
+      </sl-alert>
+    </div>
+  </header>
 
   <div class="card-grid">
 

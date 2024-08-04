@@ -1,5 +1,22 @@
+.grow {
+  flex-grow: 1;
+}
+.grow-rest {
+  flex-grow: 1e9;
+}
+
+sl-alert[data-local-storage-key] {
+  display: none;
+}
+
 body {
   font-family: var(--sl-font-sans);
+}
+
+body > header {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
 }
 
 .card-grid {
