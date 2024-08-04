@@ -9,20 +9,22 @@
   <head>
     <script type="importmap">
       {
-        "@toonvanvr/rx-ify": "https://cdn.jsdelivr.net/npm/@toonvanvr/rx-ify@1.0.0-alpha.3/+esm",
-        "rxjs": "https://cdn.jsdelivr.net/npm/rxjs@7.8.1/+esm"
+        "imports": {
+          "@toonvanvr/rx-ify": "https://cdn.jsdelivr.net/npm/@toonvanvr/rx-ify@1.0.0-alpha.3/+esm",
+          "rxjs": "https://cdn.jsdelivr.net/npm/rxjs@7.8.1/+esm"
+        }
       }
     </script>
-    <script type="module" src="@toonvanvr/rx-ify"></script>
     <script type="module">
-      import {} from 'rxjs'
+      import { interval, map, BehaviorSubject } from 'rxjs'
+      import { rx } from '@toonvanvr/rx-ify'
 
-      const div = document.querySelector('div')
-
+      const div = document.getElementById('counter')
+      rx(div).innerHTML = interval(500)
     </script>
   </head>
   <body>
-    <div id="counter"></div>
+    <div id="counter">0</div>
   </body>
 </html>
 ```

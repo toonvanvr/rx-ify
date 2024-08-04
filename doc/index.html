@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <!-- Meta -->
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <script type="importmap">
+    {
+      "imports": {
+        "@toonvanvr/rx-ify": "https://cdn.jsdelivr.net/npm/@toonvanvr/rx-ify@1.0.0-alpha.3/+esm",
+        "rxjs": "https://cdn.jsdelivr.net/npm/rxjs@7.8.1/+esm"
+      }
+    }
+  </script>
+
+  <!-- Shoelace -->
+  <link
+    rel="stylesheet"
+    media="(prefers-color-scheme:light)"
+    href="https://cdn.jsdelivr.net/npm/@shoelace-style/shoelace@2.16.0/cdn/themes/light.css" />
+  <link
+    rel="stylesheet"
+    media="(prefers-color-scheme:dark)"
+    href="https://cdn.jsdelivr.net/npm/@shoelace-style/shoelace@2.16.0/cdn/themes/dark.css"
+    onload="document.documentElement.classList.add('sl-theme-dark');" />
+  <script
+    type="module"
+    src="https://cdn.jsdelivr.net/npm/@shoelace-style/shoelace@2.16.0/cdn/shoelace-autoloader.js"></script>
+
+  <!-- Page -->
+  <title>Documentation - Rxify</title>
+  <link rel="stylesheet" href="css/documentation.css" />
+  <script type="module" src="js/index.js"></script>
+</head>
+
+<body>
+
+  <!-- Title with version badge -->
+  <h1>
+    Rxify
+    <sl-badge
+      style="font-size: var(--sl-font-size-2x-small)"
+      variant="warning"
+      pill
+      pulse>1.0.0-alpha.3</sl-badge>
+  </h1>
+
+  <!-- Active development warning -->
+  <sl-alert variant="warning" open>
+    <sl-icon slot="icon" name="exclamation-triangle"></sl-icon>
+    The API is in active development and under constant changes.<br />
+    <strong>Breaking changes are expected before release.</strong>
+  </sl-alert>
+
+  <div class="card-grid">
+
+    <!-- Counter demo -->
+    <sl-card class="card-overview">
+      <div slot="header">
+        <strong>Counter</strong>
+      </div>
+
+
+      <div id="counter"></div>
+
+      <sl-divider></sl-divider>
+
+      <section>
+        <p>
+          The bare minimum amount of code you'll need to get Rxify running in the browser.
+        </p>
+      </section>
+
+      <div slot="footer" class="text">
+        <a href="pages/demo/minimal.html"><sl-button variant="primary" pill>Preview</sl-button></a>
+        <sl-rating value="5" disabled></sl-rating>
+      </div>
+    </sl-card>
+
+  </div>
+</body>
+
+</html>
