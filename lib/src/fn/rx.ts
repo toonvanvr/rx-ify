@@ -91,7 +91,9 @@ function provision<T extends { [RxTools]?: Mods }, K extends Property<T>>(
             return value$.value
           },
     })
-    mods.set(key, { source$, value$, subscription, oldSetter })
+    const mod = { source$, value$, subscription, oldSetter }
+    mods.set(key, mod)
+    return mod
   }
 }
 
