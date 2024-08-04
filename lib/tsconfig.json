@@ -4,8 +4,8 @@
     "outDir": "dist",
     "target": "ESNext",
     "lib": ["ESNext", "DOM"],
-    "moduleResolution": "Node16",
-    "module": "NodeNext",
+    "moduleResolution": "Node10",
+    "module": "CommonJS",
     "strict": true,
     "exactOptionalPropertyTypes": true,
     "sourceMap": true

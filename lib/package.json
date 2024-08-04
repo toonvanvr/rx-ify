@@ -13,18 +13,36 @@
   "readme": "https://github.com/toonvanvr/rx-ify/README.md",
   "preferGlobal": false,
   "version": "1.0.0-alpha.1",
-  "private": false,
   "type": "module",
   "license": "MIT",
   "scripts": {
-    "build": "node scripts/build.mjs"
+    "build": "npm-run-all --serial clean build:all",
+    "clean": "rimraf dist/*",
+    "build:all": "npm-run-all --parallel build:types build:js",
+    "build:js": "node scripts/build.mjs",
+    "build:types": "tsc --declaration --emitDeclarationOnly --outfile dist/node.ts",
+    "prepack": "npm run build",
+    "publish": "npm publish --access-public"
   },
   "dependencies": {
     "rxjs": "^7.8.1"
   },
   "devDependencies": {
     "esbuild": "^0.23.0",
+    "npm-run-all": "^4.1.5",
+    "rimraf": "^6.0.1",
     "typescript": "^5.5.4"
   },
-  "dist": {}
+  "files": [
+    "src",
+    "dist"
+  ],
+  "main": "dist/node.esnext.js",
+  "exports": {
+    "import": "./dist/node.esnext.mjs",
+    "require": "./dist/browser.esnext.js",
+    "default": "./dist/node.esnext.mjs"
+  },
+  "types": "dist/node.d.ts",
+  "esnext": "dist/node.esnext.mjs"
 }
