@@ -18,13 +18,15 @@
     "directory": "lib"
   },
   "preferGlobal": false,
-  "version": "1.0.0-alpha.6",
+  "version": "1.0.0-alpha.7",
   "type": "module",
   "license": "MIT",
+  "build": "npm run build:clean && npm run build:compile",
   "scripts": {
     "build": "npm run build:clean && npm run build:compile",
     "build:clean": "shx rm -rf ./dist/",
     "build:compile": "tsc --build ./tsconfig.cjs.json ./tsconfig.esm.json ./tsconfig.types.json",
+    "build:watch": "npm run build:compile -- --watch",
     "bump": "bump package.json package-lock.json ../doc/**/*.html README.md ../README.md",
     "prepublishOnly": "npm run build && npm run bump"
   },
@@ -45,14 +47,14 @@
   "main": "dist/node.esnext.mjs",
   "exports": {
     ".": {
-      "types": "./dist/types/mod.d.ts",
-      "node": "./dist/cjs/mod.js",
-      "require": "./dist/cjs/mod.js",
-      "import": "./dist/esm/mod.js",
-      "default": "./dist/esm/mod.js"
+      "types": "./dist/types/index.d.ts",
+      "node": "./dist/cjs/index.js",
+      "require": "./dist/cjs/index.js",
+      "import": "./dist/esm/index.js",
+      "default": "./dist/esm/index.js"
     },
     "./package.json": "./package.json"
   },
   "types": "./dist/types/mod.d.ts",
-  "esnext": "./dist/esm/mod.js"
+  "esnext": "./dist/esm/index.js"
 }
