@@ -12,7 +12,7 @@
   "markdown": "github",
   "readme": "https://github.com/toonvanvr/rx-ify/README.md",
   "preferGlobal": false,
-  "version": "1.0.0-alpha.3",
+  "version": "1.0.0-alpha.4",
   "type": "module",
   "license": "MIT",
   "scripts": {
@@ -21,7 +21,7 @@
     "build:all": "npm-run-all --parallel build:types build:js",
     "build:js": "node scripts/build.mjs",
     "build:types": "tsc --declaration --emitDeclarationOnly --outfile dist/node.ts",
-    "bump": "bump ../doc/**/*.html README.md ../README.md",
+    "bump": "bump package.json package-lock.json ../doc/**/*.html README.md ../README.md",
     "prepublish": "npm run bump",
     "prepack": "npm run build",
     "publish": "npm publish --access-public"
