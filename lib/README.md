@@ -1,5 +1,7 @@
 # Rxify
 
+### [Official Documentation](https://toonvanvr.github.io/rx-ify/)
+
 ## Usage
 
 ### In browser
