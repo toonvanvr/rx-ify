@@ -26,8 +26,7 @@
     "build:clean": "shx rm -rf ./dist/",
     "build:compile": "tsc --build ./tsconfig.cjs.json ./tsconfig.esm.json ./tsconfig.types.json",
     "bump": "bump package.json package-lock.json ../doc/**/*.html README.md ../README.md",
-    "prepack": "npm run build",
-    "publish": "npm version && npm publish --access-public"
+    "prepublishOnly": "npm run build && npm run bump"
   },
   "dependencies": {
     "rxjs": "^7.8.1"
