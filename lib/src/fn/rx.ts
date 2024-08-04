@@ -1,10 +1,12 @@
-import { BehaviorSubject, Observable, of, share, switchMap } from 'rxjs'
+import { BehaviorSubject, Observable, of, Subscription, switchMap } from 'rxjs'
 import { RxTools } from '../lib/const.js'
 import { Property } from '../lib/types.js'
 
 type Mod = {
   source$: BehaviorSubject<Observable<any>>
   value$: Observable<any>
+  subscription: Subscription
+  oldSetter: undefined | ((v: any) => void)
 }
 type Mods<T = any> = Map<Property<T>, Mod>
 
@@ -32,25 +34,33 @@ function provision<T extends { [RxTools]?: Mods }, K extends Property<T>>(
   if (mods.has(key)) {
     mod = mods.get(key)!
   } else {
+    let propOwner = target
+    let propDescriptor
+    while (
+      !(propDescriptor = Object.getOwnPropertyDescriptor(propOwner, key))
+    ) {
+      propOwner = Object.getPrototypeOf(propOwner)
+    }
+    const { enumerable, set: oldSetter } = propDescriptor ?? {}
     const source$ = new BehaviorSubject(of(target[key]))
-    const value$ = source$.pipe(
-      switchMap((v) => v),
-      share()
-    )
-    mod = { source$, value$ }
-    const { enumerable, set: oldSetter } =
-      Object.getOwnPropertyDescriptor(target, key) ?? {}
+    const value$ = new BehaviorSubject(target[key])
+    const subscription = source$.pipe(switchMap((v) => v)).subscribe((v) => {
+      target[key] = v
+    })
+    // debugger
+    mod = { source$, value$, subscription, oldSetter }
     Object.defineProperty(target, key, {
       enumerable: enumerable ?? true,
       set(v: T[K]) {
         oldSetter?.call(target, v)
-        source$.next(of(v))
+        value$.next(v)
+        const proto = Object.getPrototypeOf(target)
       },
       get() {
-        return value$
+        return value$.value
       },
     })
-    mods.set(key, { source$, value$ })
+    mods.set(key, mod)
   }
 
   return mod

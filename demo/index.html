@@ -1,20 +1,22 @@
-<!DOCTYPE html>
-<html lang="en">
+<html>
   <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Rxify Demo</title>
     <script type="importmap">
       {
         "imports": {
-          "rxjs": "https://cdn.jsdelivr.net/npm/rxjs@7.8.1/dist/bundles/rxjs.umd.min.js"
+          "@toonvanvr/rx-ify": "../lib/dist/node.esnext.min.mjs",
+          "rxjs": "https://cdn.jsdelivr.net/npm/rxjs@7.8.1/+esm"
         }
       }
     </script>
+    <script type="module">
+      import { interval, map, BehaviorSubject } from 'rxjs'
+      import { rx } from '@toonvanvr/rx-ify'
 
-    <script type="module" src="../lib/dist/node.esnext.min.mjs"></script>
+      const div = document.getElementById('counter')
+      rx(div).innerHTML = interval(500)
+    </script>
   </head>
   <body>
-    Hi
+    <div id="counter">DIV</div>
   </body>
 </html>
