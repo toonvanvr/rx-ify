@@ -1,7 +1,6 @@
 {
   "extends": "./tsconfig.esm.json",
   "compilerOptions": {
-    "composite": true,
     "module": "es2015",
     "target": "ES2022",
     "removeComments": false,
