@@ -17,10 +17,7 @@
   "type": "module",
   "license": "MIT",
   "scripts": {
-    "build": "tsc",
-    "build:watch": "tsc --watch",
-    "start": "node --enable-source-maps dist/demo/index.js",
-    "start:watch": "node --watch --enable-source-maps dist/demo/index.js"
+    "build": "node scripts/build.mjs"
   },
   "dependencies": {
     "rxjs": "^7.8.1"
@@ -29,7 +26,5 @@
     "esbuild": "^0.23.0",
     "typescript": "^5.5.4"
   },
-  "dist": {
-    
-  }
+  "dist": {}
 }
