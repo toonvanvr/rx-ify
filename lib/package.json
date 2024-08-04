@@ -14,7 +14,7 @@
   "readme": "https://github.com/toonvanvr/rx-ify/README.md",
   "repository": {
     "type": "git",
-    "url": "https://toonvanvr.github.io/rx-ify.git",
+    "url": "https://github.com/toonvanvr/rx-ify.git",
     "directory": "lib"
   },
   "preferGlobal": false,
