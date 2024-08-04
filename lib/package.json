@@ -21,7 +21,7 @@
     "build:all": "npm-run-all --parallel build:types build:js",
     "build:js": "node scripts/build.mjs",
     "build:types": "tsc --declaration --emitDeclarationOnly --outfile dist/node.ts",
-    "bump": "bump **/*.html **/*.json **/*.md",
+    "bump": "bump ../doc/**/*.html README.md ../README.md",
     "prepublish": "npm run bump",
     "prepack": "npm run build",
     "publish": "npm publish --access-public"
