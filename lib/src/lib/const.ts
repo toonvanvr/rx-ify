@@ -1,1 +1,1 @@
-export const RxTools = Symbol('rx-tools')
+export const RxTools = Symbol('rx-ify')

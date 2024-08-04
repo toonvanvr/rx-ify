@@ -1,19 +1,19 @@
 {
-  "name": "rx-tools",
-  "displayName": "Rx Tools",
+  "name": "rx-ify",
+  "displayName": "Rxify",
   "author": {
     "email": "toon.vanvreckem@gmail.com",
     "name": "Toon Vanvreckem"
   },
   "bugs": {
-    "url": "https://github.com/toonvanvr/rx-tools/issues"
+    "url": "https://github.com/toonvanvr/rx-ify/issues"
   },
-  "homepage": "https://github.com/toonvanvr/rx-tools",
+  "homepage": "https://github.com/toonvanvr/rx-ify",
   "markdown": "github",
-  "readme": "https://github.com/toonvanvr/rx-tools/README.md",
+  "readme": "https://github.com/toonvanvr/rx-ify/README.md",
   "preferGlobal": false,
-  "version": "1.0.0",
-  "private": true,
+  "version": "1.0.0-alpha.1",
+  "private": false,
   "type": "module",
   "license": "MIT",
   "scripts": {
