@@ -1,0 +1,9 @@
+{
+  "extends": "./tsconfig.json",
+  "compilerOptions": {
+    "module": "commonjs",
+    "target": "ES2023",
+    "downlevelIteration": true,
+    "outDir": "./dist/cjs"
+  }
+}

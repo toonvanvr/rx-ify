@@ -1,13 +1,29 @@
 {
   "compilerOptions": {
-    "rootDir": "src",
-    "outDir": "dist",
-    "target": "ESNext",
-    "lib": ["ESNext", "DOM"],
-    "moduleResolution": "Node10",
-    "module": "CommonJS",
+    // Code style
     "strict": true,
+    "noImplicitReturns": true,
     "exactOptionalPropertyTypes": true,
-    "sourceMap": true
-  }
+
+    // Target
+    "target": "ESNext",
+    "moduleResolution": "Node",
+    "lib": ["ESNext", "DOM"],
+
+    // Pathing
+    "baseUrl": ".",
+    "paths": {
+      "@toonvanvr/rx-ify": ["./src/"],
+      "@toonvanvr/rx-ify/*": ["./src/*"]
+    },
+
+    // Compile options
+    "removeComments": true,
+    "preserveConstEnums": true,
+    "sourceMap": true,
+    "stripInternal": true,
+  },
+
+  "include": ["./**/*.ts"],
+  "exclude": ["node_modules", "dist"]
 }

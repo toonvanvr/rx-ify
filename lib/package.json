@@ -1,6 +1,7 @@
 {
   "name": "@toonvanvr/rx-ify",
   "displayName": "Rxify",
+  "description": "Utilities to manipulate plain objects with RxJs",
   "author": {
     "email": "toon.vanvreckem@gmail.com",
     "name": "Toon Vanvreckem"
@@ -11,41 +12,48 @@
   "homepage": "https://toonvanvr.github.io/rx-ify",
   "markdown": "github",
   "readme": "https://github.com/toonvanvr/rx-ify/README.md",
+  "repository": {
+    "type": "git",
+    "url": "https://toonvanvr.github.io/rx-ify.git",
+    "directory": "lib"
+  },
   "preferGlobal": false,
-  "version": "1.0.0-alpha.4",
+  "version": "1.0.0-alpha.5",
   "type": "module",
   "license": "MIT",
   "scripts": {
-    "build": "npm-run-all --serial clean build:all",
-    "clean": "rimraf dist/*",
-    "build:all": "npm-run-all --parallel build:types build:js",
-    "build:js": "node scripts/build.mjs",
-    "build:types": "tsc --declaration --emitDeclarationOnly --outfile dist/node.ts",
+    "build": "npm run build:clean && npm run build:compile",
+    "build:clean": "shx rm -rf ./dist/",
+    "build:compile": "tsc --build ./tsconfig.cjs.json ./tsconfig.esm.json ./tsconfig.types.json",
     "bump": "bump package.json package-lock.json ../doc/**/*.html README.md ../README.md",
-    "prepublish": "npm run bump",
     "prepack": "npm run build",
-    "publish": "npm publish --access-public"
+    "publish": "npm version && npm publish --access-public"
   },
   "dependencies": {
     "rxjs": "^7.8.1"
   },
   "devDependencies": {
     "@jsdevtools/version-bump-prompt": "^6.1.0",
-    "esbuild": "^0.23.0",
-    "npm-run-all": "^4.1.5",
-    "rimraf": "^6.0.1",
+    "shx": "^0.3.4",
     "typescript": "^5.5.4"
   },
   "files": [
     "src",
-    "dist"
+    "dist/cjs/**/!(*.tsbuildinfo)",
+    "dist/esm/**/!(*.tsbuildinfo)",
+    "dist/types/**/!(*.tsbuildinfo)"
   ],
   "main": "dist/node.esnext.mjs",
   "exports": {
-    "import": "./dist/node.esnext.mjs",
-    "require": "./dist/browser.esnext.js",
-    "default": "./dist/node.esnext.mjs"
+    ".": {
+      "types": "./dist/types/mod.d.ts",
+      "node": "./dist/cjs/mod.js",
+      "require": "./dist/cjs/mod.js",
+      "import": "./dist/esm/mod.js",
+      "default": "./dist/esm/mod.js"
+    },
+    "./package.json": "./package.json"
   },
-  "types": "dist/node.d.ts",
-  "esnext": "dist/node.esnext.mjs"
+  "types": "./dist/types/mod.d.ts",
+  "esnext": "./dist/esm/mod.js"
 }
