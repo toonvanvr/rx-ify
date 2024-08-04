@@ -1,4 +1,4 @@
-# [Rxify](https://toonvanvr.github.io/rx-ify/)
+# Rxify
 
 ### [Official Documentation](https://toonvanvr.github.io/rx-ify/)
 
