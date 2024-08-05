@@ -1,8 +1,5 @@
 {
   "name": "@toonvanvr/rx-ify",
-  "publishConfig": {
-    "registry": "https://npm.pkg.github.com"
-  },
   "displayName": "Rxify",
   "description": "Utilities to manipulate plain objects with RxJs",
   "author": {
