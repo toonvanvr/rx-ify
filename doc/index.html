@@ -8,6 +8,7 @@
   <script type="importmap">
     {
       "imports": {
+        "~/rx-ify": "../../lib/dist/esm/index.js",
         "@toonvanvr/rx-ify": "https://cdn.jsdelivr.net/npm/@toonvanvr/rx-ify@1.0.0-alpha.7/+esm",
         "rxjs": "https://cdn.jsdelivr.net/npm/rxjs@7.8.1/+esm"
       }
@@ -31,7 +32,11 @@
   <!-- Page -->
   <title>Documentation - Rxify</title>
   <link rel="stylesheet" href="css/documentation.css" />
-  <script type="module" src="js/index.js"></script>
+  <link rel="stylesheet" href="css/demo/form.css" />
+  <link rel="stylesheet" href="css/demo/counter.css" />
+  <script type="module" src="js/shoelace.js"></script>
+  <script defer type="module" src="js/demo/minimal.js"></script>
+  <script defer type="module" src="js/demo/form.js"></script>
 </head>
 
 <body>
@@ -68,21 +73,37 @@
       <div slot="header">
         <strong>Counter</strong>
       </div>
-
-
-      <div id="counter"></div>
-
+      <div class="demo-counter thumbnail">
+        <div id="counter"></div>
+      </div>
       <sl-divider></sl-divider>
-
       <section>
-        <p>
-          The bare minimum amount of code you'll need to get Rxify running in the browser.
-        </p>
+        The bare minimum amount of code you'll need to get Rxify running in the browser.
       </section>
-
       <div slot="footer" class="text">
-        <a href="pages/demo/minimal.html"><sl-button variant="primary" pill>Preview</sl-button></a>
+        <a href="pages/demo/minimal.html"><sl-button variant="primary" pill>Open</sl-button></a>
         <sl-rating value="5" disabled></sl-rating>
+      </div>
+    </sl-card>
+
+    <!-- Form demo -->
+    <sl-card class="card-overview">
+      <div slot="header">
+        <strong>Form</strong>
+      </div>
+      <div class="demo-form thumbnail">
+        <input id="input" type="text"></input>
+        <button id="clear">Clear</button>
+        <div id="output"></div>
+      </div>
+      <sl-divider></sl-divider>
+      <section>
+        Handle events from native input elements.
+      </section>
+      </section>
+      <div slot="footer" class="text">
+        <a href="pages/demo/form.html"><sl-button variant="primary" pill>Open</sl-button></a>
+        <sl-rating value="3" disabled></sl-rating>
       </div>
     </sl-card>
 

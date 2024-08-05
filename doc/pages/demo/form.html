@@ -4,17 +4,35 @@
   <script type="importmap">
     {
       "imports": {
+        "~/rx-ify": "../../../lib/dist/esm/index.js",
         "@toonvanvr/rx-ify": "https://cdn.jsdelivr.net/npm/@toonvanvr/rx-ify@1.0.0-alpha.7/+esm",
         "rxjs": "https://cdn.jsdelivr.net/npm/rxjs@7.8.1/+esm"
       }
     }
   </script>
-  <script type="module" src="./form.js"></script>
+  <link
+    rel="stylesheet"
+    media="(prefers-color-scheme:light)"
+    href="https://cdn.jsdelivr.net/npm/@shoelace-style/shoelace@2.16.0/cdn/themes/light.css" />
+  <link
+    rel="stylesheet"
+    media="(prefers-color-scheme:dark)"
+    href="https://cdn.jsdelivr.net/npm/@shoelace-style/shoelace@2.16.0/cdn/themes/dark.css"
+    onload="document.documentElement.classList.add('sl-theme-dark');" />
+  <script
+    type="module"
+    src="https://cdn.jsdelivr.net/npm/@shoelace-style/shoelace@2.16.0/cdn/shoelace-autoloader.js"></script>
 
+  <link rel="stylesheet" href="../../css/demo/form.css" />
+  <script type="module" src="../../js/demo/form.js"></script>
 </head>
 
 <body>
-  <div id="counter">0</div>
+  <div class="demo-form">
+    <input id="input" type="text"></input>
+    <button id="clear">Clear</button>
+    <div id="output">Idle</div>
+  </div>
 </body>
 
 </html>
