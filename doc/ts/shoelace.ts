@@ -1,14 +1,15 @@
 // Remember closing an alert
 document
-    .querySelectorAll('sl-alert[data-local-storage-key]')
-    .forEach(async (alert) => {
+  .querySelectorAll('sl-alert[data-local-storage-key]')
+  .forEach(async (alert) => {
     if (!(alert instanceof HTMLElement) || !alert.dataset.localStorageKey)
-        return;
+      return
+
     if (localStorage.getItem(alert.dataset.localStorageKey) !== 'closed') {
-        alert.style.display = 'block';
+      alert.style.display = 'block'
     }
+
     alert.addEventListener('sl-hide', () => {
-        localStorage.setItem(alert.dataset.localStorageKey, 'closed');
-    });
-});
-export {};
+      localStorage.setItem(alert.dataset.localStorageKey!, 'closed')
+    })
+  })

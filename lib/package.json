@@ -39,7 +39,7 @@
     "typescript": "^5.5.4"
   },
   "files": [
-    "src",
+    "src/**/!(*.spec.ts)",
     "dist/cjs/**/!(*.tsbuildinfo)",
     "dist/esm/**/!(*.tsbuildinfo)",
     "dist/types/**/!(*.tsbuildinfo)"

@@ -1,0 +1,23 @@
+{
+  "compilerOptions": {
+    "module": "NodeNext",
+    "target": "ESNext",
+    "lib": ["ESNext", "DOM"],
+    "moduleResolution": "NodeNext",
+    "strict": true,
+    "checkJs": true,
+    "exactOptionalPropertyTypes": true,
+    "baseUrl": "./",
+    "rootDir": "./ts",
+    "outDir": "js",
+    "paths": {
+      "@toonvanvr/rx-ify": [
+        "../lib/dist/types/index.d.ts",
+        "../lib/dist/esm/index.js"
+      ],
+    },
+    "removeComments": false,
+  },
+  "include": ["./**/*.ts"],
+  "exclude": ["node_modules"]
+}

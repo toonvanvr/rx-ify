@@ -5,15 +5,15 @@
   <!-- Meta -->
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <script type="importmap">
+  <script src="./js/importmap.js"></script>
+  <!-- <script type="importmap">
     {
       "imports": {
-        "~/rx-ify": "../../lib/dist/esm/index.js",
         "@toonvanvr/rx-ify": "https://cdn.jsdelivr.net/npm/@toonvanvr/rx-ify@1.0.0-alpha.8/+esm",
         "rxjs": "https://cdn.jsdelivr.net/npm/rxjs@7.8.1/+esm"
       }
     }
-  </script>
+  </script> -->
 
   <!-- Shoelace -->
   <link
@@ -35,8 +35,8 @@
   <link rel="stylesheet" href="css/demo/form.css" />
   <link rel="stylesheet" href="css/demo/counter.css" />
   <script type="module" src="js/shoelace.js"></script>
-  <script defer type="module" src="js/demo/minimal.js"></script>
-  <script defer type="module" src="js/demo/form.js"></script>
+  <script defer type="module" src="js/demo/minimal/index.js"></script>
+  <script defer type="module" src="js/demo/form/index.js"></script>
 </head>
 
 <body>
@@ -106,6 +106,23 @@
         <sl-rating value="3" disabled></sl-rating>
       </div>
     </sl-card>
+
+    <!-- Mesh demo -->
+    <sl-card class="card-overview">
+      <div slot="header">
+        <strong>Mesh</strong>
+      </div>
+      <div class="demo-mesh thumbnail">
+        <div id="mesh"></div>
+      </div>
+      <sl-divider></sl-divider>
+      <section>
+        A more complex example with some sources and lots of sinks.
+      </section>
+      <div slot="footer" class="text">
+        <a href="pages/demo/mesh.html"><sl-button variant="primary" pill>Open</sl-button></a>
+        <sl-rating value="5" disabled></sl-rating>
+      </div>
 
   </div>
 </body>
