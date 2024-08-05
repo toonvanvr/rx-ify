@@ -1,2 +1,2 @@
 /** Woop woop */
-export * from './functions/rx.js'
+export * from './functions/$$.js'

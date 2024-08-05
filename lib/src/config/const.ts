@@ -3,4 +3,4 @@
  *
  * It is accessible, but the property descriptor defines it as non-enumerable
  */
-export const RxTools = Symbol('rx-ify')
+export const Rxify = Symbol('rx-ify')

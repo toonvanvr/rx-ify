@@ -1,7 +1,6 @@
 <html>
 
 <head>
-
   <script type="importmap">
     {
       "imports": {
@@ -10,14 +9,7 @@
       }
     }
   </script>
-
-  <script type="module">
-    import { interval, map, BehaviorSubject } from 'rxjs'
-    import { $$ } from '@toonvanvr/rx-ify'
-
-    const div = document.getElementById('counter')
-    $$(div).innerHTML = interval(500)
-  </script>
+  <script type="module" src="./form.js"></script>
 
 </head>
 

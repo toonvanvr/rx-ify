@@ -16,7 +16,7 @@ import type { WithRxProperties } from '../util/mod.types.js'
  *
  * ```
  * const foo = { bar: 3 }
- * const foo$$ = rx(foo)
+ * const foo$$ = $$(foo)
  *
  * // Normal setters keep working
  * foo.bar = 4
@@ -33,7 +33,7 @@ import type { WithRxProperties } from '../util/mod.types.js'
  *
  * TODO: setting a non-observable on foo$$ should remove the subscription
  */
-export function rx<T extends object>(target: T): WithRxProperties<T> {
+export function $$<T extends object>(target: T): WithRxProperties<T> {
   return new Proxy<WithRxProperties<T>>(target as any, {
     // Return an observable for the target object's property
     get(target: any, key: Property<T>, receiver: any) {

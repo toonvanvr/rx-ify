@@ -1,5 +1,5 @@
 import { BehaviorSubject, of, switchMap } from 'rxjs'
-import { RxTools } from '../config/const.js'
+import { Rxify } from '../config/const.js'
 import { Property } from '../types/object.js'
 import { getDescriptor } from './inheritance.js'
 import { Mod, Mods } from './mod.types.js'
@@ -8,24 +8,24 @@ import { Mod, Mods } from './mod.types.js'
  * Attach an empty reactive state to the object if this is the first time
  * we're handling this object, else return that state (performance+)
  */
-export function getMods<T extends { [RxTools]?: Mods }>(target: T): Mods<T> {
-  if (!(RxTools in target)) {
+export function getMods<T extends { [Rxify]?: Mods }>(target: T): Mods<T> {
+  if (!(Rxify in target)) {
     const mods: Mods<T> = new Map()
-    Object.defineProperty(target, RxTools, {
+    Object.defineProperty(target, Rxify, {
       enumerable: false,
       writable: false,
       value: mods,
     })
     return mods
   } else {
-    return target[RxTools] as Mods<T>
+    return target[Rxify] as Mods<T>
   }
 }
 
 /**
  * Retrieve or create the reactivity state for an object property
  */
-export function getMod<T extends { [RxTools]?: Mods }, K extends Property<T>>(
+export function getMod<T extends { [Rxify]?: Mods }, K extends Property<T>>(
   target: T,
   key: K
 ): Mod {
@@ -41,10 +41,11 @@ export function getMod<T extends { [RxTools]?: Mods }, K extends Property<T>>(
 /**
  * Create the reactivity state for an object property
  */
-export function createMod<
-  T extends { [RxTools]?: Mods },
-  K extends Property<T>
->(target: T, key: K, mods: Mods<T>): Mod {
+export function createMod<T extends { [Rxify]?: Mods }, K extends Property<T>>(
+  target: T,
+  key: K,
+  mods: Mods<T>
+): Mod {
   // Create a backup of the original getter/setter
   const {
     enumerable,

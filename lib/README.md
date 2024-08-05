@@ -19,10 +19,10 @@
     </script>
     <script type="module">
       import { interval, map, BehaviorSubject } from 'rxjs'
-      import { rx } from '@toonvanvr/rx-ify'
+      import { $$ } from '@toonvanvr/rx-ify'
 
       const div = document.getElementById('counter')
-      rx(div).innerHTML = interval(500)
+      $$(div).innerHTML = interval(500)
     </script>
   </head>
   <body>
