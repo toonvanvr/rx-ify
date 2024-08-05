@@ -11,7 +11,10 @@ export function getDescriptor(
   key: Property
 ): PropertyDescriptor | null {
   let descriptor: PropertyDescriptor | undefined
-  while (!(descriptor = Object.getOwnPropertyDescriptor(target, key))) {
+  while (
+    target &&
+    !(descriptor = Object.getOwnPropertyDescriptor(target, key))
+  ) {
     target = Object.getPrototypeOf(target)
   }
   return descriptor ?? null

@@ -26,7 +26,7 @@
     "build": "npm run build:clean && npm run build:compile",
     "build:clean": "shx rm -rf ./dist/",
     "build:compile": "tsc --build ./tsconfig.cjs.json ./tsconfig.esm.json ./tsconfig.types.json",
-    "build:watch": "npm run build:compile -- --watch",
+    "build:watch": "npm run build:clean && npm run build:compile -- --watch",
     "bump": "bump package.json package-lock.json ../doc/**/*.html README.md ../README.md",
     "prepublishOnly": "npm run build && npm run bump"
   },
