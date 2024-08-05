@@ -1,5 +1,5 @@
+import { $$ } from '@toonvanvr/rx-ify'
 import { debounceTime, fromEvent, map, merge } from 'rxjs'
-import { $$ } from '~/rx-ify'
 
 // Unfortunately, we can't use input$$.value directly because the 'input'
 // event does not trigger the setter of <input> => no observable updated to emit
