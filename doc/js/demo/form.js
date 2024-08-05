@@ -1,8 +1,6 @@
 import { debounceTime, fromEvent, map, merge } from 'rxjs'
 import { $$ } from '~/rx-ify'
 
-const input$$ = $$(document.querySelector('.demo-form #input'))
-
 // Unfortunately, we can't use input$$.value directly because the 'input'
 // event does not trigger the setter of <input> => no observable updated to emit
 const inputValue$ = fromEvent(
@@ -19,6 +17,6 @@ const output$$ = $$(document.querySelector('.demo-form #output'))
 output$$.innerText = merge(
   // input$$.value does not update from keyboardevents, unfortunately
   inputValue$,
-  clear$.pipe(map(() => '')),
+  clear$,
   idle$.pipe(map(() => 'Idle'))
 )
