@@ -18,7 +18,7 @@
     "directory": "lib"
   },
   "preferGlobal": false,
-  "version": "1.0.0-alpha.7",
+  "version": "1.0.0-alpha.8",
   "type": "module",
   "license": "MIT",
   "build": "npm run build:clean && npm run build:compile",
