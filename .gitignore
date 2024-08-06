@@ -4,3 +4,5 @@ node_modules/
 /.npmrc
 **/*.tsbuildinfo
 dist/
+!doc/**/importmap.js
+doc/**/*.js
