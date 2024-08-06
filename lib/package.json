@@ -36,7 +36,7 @@
   "devDependencies": {
     "@jsdevtools/version-bump-prompt": "^6.1.0",
     "shx": "^0.3.4",
-    "typescript": "^5.5.4"
+    "typescript": "^5.6.0-beta"
   },
   "files": [
     "src/**/!(*.spec.ts)",

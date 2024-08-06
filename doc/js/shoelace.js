@@ -1,7 +1,5 @@
 // Remember closing an alert
-document
-    .querySelectorAll('sl-alert[data-local-storage-key]')
-    .forEach(async (alert) => {
+document.querySelectorAll('sl-alert[data-local-storage-key]').forEach(async (alert) => {
     if (!(alert instanceof HTMLElement) || !alert.dataset.localStorageKey)
         return;
     if (localStorage.getItem(alert.dataset.localStorageKey) !== 'closed') {

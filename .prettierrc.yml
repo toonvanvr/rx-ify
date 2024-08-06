@@ -1,0 +1,7 @@
+printWidth: 96
+semi: false
+quoteProps: consistent
+arrowParens: always
+singleQuote: true
+useTabs: false
+trailingComma: all

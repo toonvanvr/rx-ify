@@ -1,12 +1,11 @@
-import { NEVER, Observable, share, Subject, switchAll } from 'rxjs'
+import { BehaviorSubject, NEVER, Observable, share, Subject, switchAll } from 'rxjs'
+import { Vector } from '../types.js'
 import { Edge } from './edge.js'
 import { Mesh } from './mesh.js'
-import { Vector } from './types.js'
 
 export class Node {
   public readonly mesh: Mesh
-  public readonly x: number
-  public readonly y: number
+  public readonly origin$: BehaviorSubject<Vector>
 
   public readonly edges = new Map<Node, Edge>()
   public readonly source$ = new Subject<Observable<any>>()
@@ -14,8 +13,7 @@ export class Node {
 
   constructor(mesh: Mesh, { x, y }: Vector, source$: Observable<any> = NEVER) {
     this.mesh = mesh
-    this.x = x
-    this.y = y
+    this.origin$ = new BehaviorSubject({ x, y })
     this.source$.next(source$)
   }
 

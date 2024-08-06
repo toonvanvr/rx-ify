@@ -13,7 +13,7 @@ const output$$ = $$(output)
 // Unfortunately, we can't use input$$.value directly because the 'input'
 // event does not trigger the setter of <input> => no observable updated to emit
 const inputValue$ = fromEvent<TextInputEvent>(input, 'input').pipe(
-  map((e) => e.target.value)
+  map((e) => e.target.value),
 )
 
 const clear$ = fromEvent(clear, 'click')
@@ -23,7 +23,5 @@ output$$.innerText = merge(
   // input$$.value does not update from keyboardevents, unfortunately
   inputValue$,
   clear$.pipe(map(() => '')),
-  idle$.pipe(map(() => 'Idle'))
+  idle$.pipe(map(() => 'Idle')),
 )
-
-// input$$.value = clear$.pipe(map(() => '')) // FIXME: this should work? 😰

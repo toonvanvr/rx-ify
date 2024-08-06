@@ -8,5 +8,5 @@ if (!div) throw new Error('No #counter element found')
 div.innerText = `${prevCounterValue}`
 $$(div).innerHTML = interval(500).pipe(
   map((i) => `${prevCounterValue + i + 1}`),
-  tap((i) => localStorage.setItem('counter', i))
+  tap((i) => localStorage.setItem('counter', i)),
 )

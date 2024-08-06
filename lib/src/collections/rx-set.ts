@@ -16,14 +16,13 @@ export class RxSet<T> {
       }
     }
   }
-
   readonly #staticIndices = new Map<PropertyKey, RxMap<T[keyof T], T>>()
   readonly #indexDefinitions = new Map<PropertyKey, IndexOptions<T>>()
 
   readonly #items = new Set<T>()
   readonly #itemsUpdated$ = new Subject<void>()
-
-  public readonly items$ = this.#itemsUpdated$.pipe(map(() => this.#items), startWith(this.#items))
+  readonly #items$ = this.#itemsUpdated$.pipe(map(() => this.#items), startWith(this.#items))
+  public readonly values$ = this.#items$.pipe(map(items => items.values()))
 
   async add(...items: T[]) {
     for (const item of items) {
@@ -52,7 +51,7 @@ export class RxSet<T> {
   }
 
   has$(item: T) {
-    return this.items$.pipe(
+    return this.#items$.pipe(
       map((items) => items.has(item) ? true : false),
       share()
     )
